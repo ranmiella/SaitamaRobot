@@ -18,7 +18,7 @@ if sys.version_info[0] < 3 or sys.version_info[1] < 6:
     LOGGER.error("You MUST have a python version of at least 3.6! Multiple features depend on this. Bot quitting.")
     quit(1)
 
-ENV = bool(os.environ.get('ENV', False))
+ENV = bool(os.environ.get('ENV', True))
 
 if ENV:
     TOKEN = os.environ.get('TOKEN', None)
@@ -84,69 +84,7 @@ if ENV:
         raise Exception("Your blacklisted chats list does not contain valid integers.")
 
 else:
-    from SaitamaRobot.config import Development as Config
-    TOKEN = Config.API_KEY
-
-    try:
-        OWNER_ID = int(Config.OWNER_ID)
-    except ValueError:
-        raise Exception("Your OWNER_ID variable is not a valid integer.")
-
-    MESSAGE_DUMP = Config.MESSAGE_DUMP
-    OWNER_USERNAME = Config.OWNER_USERNAME
-
-    try:
-        SUDO_USERS = set(int(x) for x in Config.SUDO_USERS or [])
-        DEV_USERS = set(int(x) for x in Config.DEV_USERS or [])
-    except ValueError:
-        raise Exception("Your sudo or dev users list does not contain valid integers.")
-
-    try:
-        SUPPORT_USERS = set(int(x) for x in Config.SUPPORT_USERS or [])
-    except ValueError:
-        raise Exception("Your support users list does not contain valid integers.")
-
-    try:
-        SPAMMERS = set(int(x) for x in Config.SPAMMERS or [])
-    except ValueError:
-        raise Exception("Your spammers users list does not contain valid integers.")
-
-    try:
-        WHITELIST_USERS = set(int(x) for x in Config.WHITELIST_USERS or [])
-    except ValueError:
-        raise Exception("Your whitelisted users list does not contain valid integers.")
-
-    try:
-        TIGER_USERS = set(int(x) for x in Config.TIGER_USERS or [])
-    except ValueError:
-        raise Exception("Your tiger users list does not contain valid integers.")
-
-    GBAN_LOGS = Config.GBAN_LOGS
-    WEBHOOK = Config.WEBHOOK
-    URL = Config.URL
-    PORT = Config.PORT
-    CERT_PATH = Config.CERT_PATH
-
-    DB_URI = Config.SQLALCHEMY_DATABASE_URI
-    DONATION_LINK = Config.DONATION_LINK
-    LOAD = Config.LOAD
-    NO_LOAD = Config.NO_LOAD
-    DEL_CMDS = Config.DEL_CMDS
-    STRICT_GBAN = Config.STRICT_GBAN
-    WORKERS = Config.WORKERS
-    BAN_STICKER = Config.BAN_STICKER
-    ALLOW_EXCL = Config.ALLOW_EXCL
-    CASH_API_KEY = Config.CASH_API_KEY
-    TIME_API_KEY = Config.TIME_API_KEY
-    AI_API_KEY = Config.AI_API_KEY
-    WALL_API = Config.WALL_API
-    SUPPORT_CHAT = Config.SUPPORT_CHAT
-    
-    try:
-        BL_CHATS = set(int(x) for x in Config.BL_CHATS or [])
-    except ValueError:
-        raise Exception ("Your blacklisted chats list does not contain valid integers.")
-
+   quit(1)
 
 SUDO_USERS.add(OWNER_ID)
 DEV_USERS.add(OWNER_ID)
