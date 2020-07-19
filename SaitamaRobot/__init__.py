@@ -3,6 +3,7 @@ import os
 import sys
 import time
 import telegram.ext as tg
+from telethon import TelegramClient
 
 StartTime = time.time()
 
@@ -77,7 +78,7 @@ if ENV:
     AI_API_KEY = os.environ.get('AI_API_KEY', None)
     WALL_API = os.environ.get('WALL_API', None)
     SUPPORT_CHAT = os.environ.get('SUPPORT_CHAT', None)
-
+    tbot = TelegramClient("SaitamaRobot", API_KEY, API_HASH)
     try:
         BL_CHATS = set(int(x) for x in os.environ.get('BL_CHATS', "").split())
     except ValueError:
