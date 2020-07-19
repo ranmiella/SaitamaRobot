@@ -31,7 +31,8 @@ if ENV:
 
     MESSAGE_DUMP = os.environ.get('MESSAGE_DUMP', None)
     OWNER_USERNAME = os.environ.get("OWNER_USERNAME", None)
-
+    API_KEY = os.environ.get("API_KEY", None)
+    API_HASH = os.environ.get("API_HASH", None)
     try:
         SUDO_USERS = set(int(x) for x in os.environ.get("SUDO_USERS", "").split())
         DEV_USERS = set(int(x) for x in os.environ.get("DEV_USERS", "").split())
