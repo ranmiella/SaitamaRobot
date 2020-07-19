@@ -92,4 +92,4 @@ async def rm_deletedacc(show):
 __help__ = """
  - /zombies - Removes all deleted accounts from groups/channels
 """
-__mod_name = "Zombies"
+__mod_name__ = "Zombies"
