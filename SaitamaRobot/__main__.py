@@ -18,7 +18,7 @@ from SaitamaRobot.modules.helper_funcs.misc import paginate_modules
 
 PM_START_TEXT = """
 Hi {}, my name is {}! 
-I am an Anime themed group management bot.
+wkwkwktestasdasda
 To add me to your group click ["HERE"](t.me/SaitamaRobot?startgroup=botstart)
 You can find my list of available commands with /help.
 
