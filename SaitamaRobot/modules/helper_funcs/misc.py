@@ -1,10 +1,11 @@
+from functools import wraps
 from typing import List, Dict
 
-from math import ceil
-from telegram import MAX_MESSAGE_LENGTH, InlineKeyboardButton, Bot, ParseMode
+from telegram import MAX_MESSAGE_LENGTH, InlineKeyboardButton, Bot, ParseMode, Update
 from telegram.error import TelegramError
 
-from SaitamaRobot import NO_LOAD
+from SaitamaRobot import LOAD, NO_LOAD, OWNER_ID
+from SaitamaRobot.modules.translations.strings import tld
 
 
 class EqInlineKeyboardButton(InlineKeyboardButton):
@@ -39,20 +40,24 @@ def split_message(msg: str) -> List[str]:
         return result
 
 
-def paginate_modules(page_n: int, module_dict: Dict, prefix, chat=None) -> List:
+def paginate_modules(chat_id,
+                     page_n: int,
+                     module_dict: Dict,
+                     prefix,
+                     chat=None) -> List:
     if not chat:
         modules = sorted(
-            [EqInlineKeyboardButton(x.__mod_name__,
+            [EqInlineKeyboardButton(tld(chat_id, x.__mod_name__),
                                     callback_data="{}_module({})".format(prefix, x.__mod_name__.lower())) for x
              in module_dict.values()])
     else:
         modules = sorted(
-            [EqInlineKeyboardButton(x.__mod_name__,
+            [EqInlineKeyboardButton(tld(chat_id, x.__mod_name__),
                                     callback_data="{}_module({},{})".format(prefix, chat, x.__mod_name__.lower())) for x
              in module_dict.values()])
 
     pairs = [
-    modules[i * 3:(i + 1) * 3] for i in range((len(modules) + 3 - 1) // 3)
+        modules[i * 3:(i + 1) * 3] for i in range((len(modules) + 3 - 1) // 3)
     ]
 
     round_num = len(modules) / 3
@@ -62,17 +67,22 @@ def paginate_modules(page_n: int, module_dict: Dict, prefix, chat=None) -> List:
     elif calc == 2:
         pairs.append((modules[-1], ))
 
-
     return pairs
 
 
-def send_to_list(bot: Bot, send_to: list, message: str, markdown=False, html=False) -> None:
+def send_to_list(bot: Bot,
+                 send_to: list,
+                 message: str,
+                 markdown=False,
+                 html=False) -> None:
     if html and markdown:
         raise Exception("Can only send with either markdown or HTML!")
     for user_id in set(send_to):
         try:
             if markdown:
-                bot.send_message(user_id, message, parse_mode=ParseMode.MARKDOWN)
+                bot.send_message(user_id,
+                                 message,
+                                 parse_mode=ParseMode.MARKDOWN)
             elif html:
                 bot.send_message(user_id, message, parse_mode=ParseMode.HTML)
             else:
@@ -104,4 +114,16 @@ def revert_buttons(buttons):
 
 
 def is_module_loaded(name):
-    return name not in NO_LOAD
+    return (not LOAD or name in LOAD) and name not in NO_LOAD
+
+
+def user_bot_owner(func):
+    @wraps(func)
+    def is_user_bot_owner(bot: Bot, update: Update, *args, **kwargs):
+        user = update.effective_user
+        if user and user.id == OWNER_ID:
+            return func(bot, update, *args, **kwargs)
+        else:
+            pass
+
+    return is_user_bot_owner
