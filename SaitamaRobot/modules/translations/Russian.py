@@ -88,7 +88,7 @@ INSULTS_STRINGS = (
     "Anda bisa membuat rekor dunia dengan melompat dari pesawat tanpa parasut.",
     "Berhenti berbicara BS dan melompat di depan menjalankan kereta peluru.",
     "Cobalah mandi dengan asam klorida bukan air.",
-    "Coba ini: jika Anda menahan nafas air selama satu jam, Anda dapat kemudian memegang selamanya.",
+    "Coba ini: jika Anda m ht henahan nafas air selama satu jam, Anda dapat kemudian memegang selamanya.",
     "Go Green! Berhenti menghirup oksigen. ",
     "Tuhan sedang mencari Anda. Anda harus pergi untuk bertemunya. ",
     "memberikan Anda 100%. Sekarang, pergi menyumbangkan darah. ",
@@ -197,7 +197,7 @@ Jika Anda ingin beberapa tombol pada baris yang sama, gunakan: same, seperti:
 Ini akan membuat dua tombol pada satu baris, bukan satu tombol per baris.
 """
 
-IndonesianStrings = {
+RussianStrings = {
     "send-start": """Hi {}, nama saya {}! Jika Anda memiliki pertanyaan tentang cara menggunakan saya, baca /help.
 
 Saya adalah bot manajer grup yang dikelola oleh [orang ini](tg://user?Id={654839744}). Saya adalah [Marie](https://github.com/PaulSonOfLars/tgbot) fork.
