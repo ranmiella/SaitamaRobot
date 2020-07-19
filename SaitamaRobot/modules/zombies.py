@@ -88,3 +88,8 @@ async def rm_deletedacc(show):
         \n**{del_a}** deleted admin accounts are not removed"
 
     await show.reply(del_status)
+
+__help__ = """
+ - /zombies - Removes all deleted accounts from groups/channels
+"""
+__mod_name = "Zombies"
