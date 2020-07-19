@@ -197,7 +197,7 @@ Jika Anda ingin beberapa tombol pada baris yang sama, gunakan: same, seperti:
 Ini akan membuat dua tombol pada satu baris, bukan satu tombol per baris.
 """
 
-IndonesianStrings = {
+SpanishStrings = {
     "send-start": """Hi {}, nama saya {}! Jika Anda memiliki pertanyaan tentang cara menggunakan saya, baca /help.
 
 Saya adalah bot manajer grup yang dikelola oleh [orang ini](tg://user?Id={654839744}). Saya adalah [Marie](https://github.com/PaulSonOfLars/tgbot) fork.
